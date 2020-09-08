@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>Temple Assignment</title>
+  </head>
+  <body>
+
+      <input type="text" name="number" id="ar" placeholder="Enter the number">
+    <br />
+
+    <button onclick="minCost()"> Calculate </button>
+    <h1 id="result"></h1>
+    <script type="text/javascript">
+
+      function minCost()
+      {
+        var elem=document.getElementById("ar").value;
+        var ar=elem.split(",");
+        var n=ar.length;
+        var TempleArr=[];
+        var totalCost=0;
+
+        for(var j=0;j<n;j++)
+      	{
+      		if(!isNaN(ar[j]))
+      		{
+      			if(ar[j])
+      			{
+      			TempleArr.push(parseInt(ar[j]));
+      			}
+      		}else{
+      			alert("Please Enter Valid Numbers")
+      		}
+
+      	}
+      TempleArr.sort();
+      n=TempleArr.length;
+      for (var i = n-1; i > 1; i -=2)
+      {
+        if (i == 2)
+        {
+          totalCost += TempleArr[2] + TempleArr[0];
+        }
+        else
+        {
+          let first_cost =TempleArr[i] +TempleArr[0] + 2 *TempleArr[1];
+    			let second_cost =TempleArr[i] +TempleArr[i - 1] + 2 *TempleArr[0];
+    			totalCost += Math.min(first_cost, second_cost);
+        }
+      }
+
+
+      if (n == 1)
+      {
+        totalCost += TempleArr[0];
+      }
+      else
+      {
+        totalCost += TempleArr[1];
+      }
+      document.getElementById("result").innerHTML=totalCost;
+    }
+
+    </script>
+  </body>
+</html>
